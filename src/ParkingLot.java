@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Observable;
 
 /*
 Simulate a parking lot
  */
-public class ParkingLot extends Observable {
+public class ParkingLot {
 
     HashSet<Car> cars = new HashSet<>();
     int maximumNumberOfSlots;
@@ -15,11 +14,8 @@ public class ParkingLot extends Observable {
         maximumNumberOfSlots = totalSlots;
     }
 
-    private boolean isFull(){
-        if(cars.size()==maximumNumberOfSlots){
-            return true;
-        }
-        return false;
+    private boolean isFull() {
+        return cars.size() == maximumNumberOfSlots;
     }
 
     public void park(Car car) throws CarAlreadyParkedException, ParkingLotFullException {
@@ -34,22 +30,11 @@ public class ParkingLot extends Observable {
 
         cars.add(car);
 
-        if(isFull()){
-            notifyAllObservers(true);
-        }
-    }
-
-    private void notifyAllObservers(boolean isFull) {
-        if(isFull) {
+        if (isFull()) {
             for (Notifiable observer : observers) {
                 observer.notifyParkingLotFull();
             }
-            return;
         }
-        for (Notifiable observer : observers) {
-            observer.notifyParkingLotAvailable();
-        }
-
     }
 
     public boolean hasCar(Car car) {
@@ -63,11 +48,13 @@ public class ParkingLot extends Observable {
             throw new CarNotParkedException();
         }
 
-        if(isFull()){
-            notifyAllObservers(false);
-        }
-
         cars.remove(car);
+
+        if (cars.size() == maximumNumberOfSlots-1) {
+            for (Notifiable observer : observers) {
+                observer.notifyParkingLotAvailable();
+            }
+        }
     }
 
     public void addObserver(Notifiable observer) {

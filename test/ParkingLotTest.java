@@ -1,7 +1,5 @@
 import org.junit.Test;
 
-import java.util.concurrent.locks.LockSupport;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -109,11 +107,13 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void park_shouldCallNotifyParkingLotAvailable_whenParkingLotSpaceBecomesAvailable() {
+    public void park_shouldCallNotifyParkingLotAvailableForAllObservers_whenParkingLotSpaceBecomesAvailable() {
 
         Notifiable owner = mock(Notifiable.class);
+        Notifiable trafficCop = mock(Notifiable.class);
         ParkingLot parkingLot = new ParkingLot(2);
         parkingLot.addObserver(owner);
+        parkingLot.addObserver(trafficCop);
         Car car1 = new Car();
         Car car2 = new Car();
 
@@ -122,5 +122,36 @@ public class ParkingLotTest {
         parkingLot.unpark(car1);
 
         verify(owner, times(1)).notifyParkingLotAvailable();
+        verify(trafficCop, times(1)).notifyParkingLotAvailable();
+    }
+
+    @Test
+    public void park_shouldCallNotifyParkingLotFullForAllObservers_whenParkingLotSpaceBecomesAvailable() {
+
+        Notifiable owner = mock(Notifiable.class);
+        Notifiable trafficCop = mock(Notifiable.class);
+        ParkingLot parkingLot = new ParkingLot(2);
+        parkingLot.addObserver(owner);
+        parkingLot.addObserver(trafficCop);
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        parkingLot.park(car1);
+        parkingLot.park(car2);
+
+        verify(owner, times(1)).notifyParkingLotFull();
+        verify(trafficCop, times(1)).notifyParkingLotFull();
+
+    }
+
+    @Test
+    public void park_shouldBeCalledByAttendant_whenCarNeedsToBeParked() {
+
+        ParkingLot parkingLot = new ParkingLot(2);
+        Attendant attendant = new Attendant(parkingLot);
+        Car car = new Car();
+
+        attendant.park(car);
+
     }
 }
