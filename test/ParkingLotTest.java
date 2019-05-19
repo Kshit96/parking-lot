@@ -154,4 +154,45 @@ public class ParkingLotTest {
         attendant.park(car);
 
     }
+
+    @Test
+    public void park_shouldCallNotifyParkingLotFullForAllObservers_whenParkingLotIsFullAndCarsAreParkedByAttendant() {
+
+        Notifiable owner = mock(Notifiable.class);
+        Notifiable trafficCop = mock(Notifiable.class);
+        ParkingLot parkingLot = new ParkingLot(2);
+        Attendant attendant = new Attendant(parkingLot);
+        parkingLot.addObserver(owner);
+        parkingLot.addObserver(trafficCop);
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        attendant.park(car1);
+        attendant.park(car2);
+
+        verify(owner, times(1)).notifyParkingLotFull();
+        verify(trafficCop, times(1)).notifyParkingLotFull();
+
+    }
+
+    @Test
+    public void park_shouldCallNotifyParkingLotAvailable_whenParkingLotIsFullAndCarIsUnparkedByAttendant() {
+
+        Notifiable owner = mock(Notifiable.class);
+        Notifiable trafficCop = mock(Notifiable.class);
+        ParkingLot parkingLot = new ParkingLot(2);
+        Attendant attendant = new Attendant(parkingLot);
+        parkingLot.addObserver(owner);
+        parkingLot.addObserver(trafficCop);
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        attendant.park(car1);
+        attendant.park(car2);
+        attendant.unpark(car1);
+
+        verify(owner, times(1)).notifyParkingLotAvailable();
+        verify(trafficCop, times(1)).notifyParkingLotAvailable();
+
+    }
 }
