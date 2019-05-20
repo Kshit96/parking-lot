@@ -1,4 +1,7 @@
-package PACKAGE_NAME;
+public enum Strategy {
 
-public class Strategy {
+        MAX_FREE_SPACE,
+        MAX_CAPACITY,
+        FIRST_AVAILABLE
+
 }

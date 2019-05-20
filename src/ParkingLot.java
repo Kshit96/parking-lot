@@ -14,8 +14,12 @@ public class ParkingLot {
         maximumNumberOfSlots = totalSlots;
     }
 
-    private boolean isFull() {
+    public boolean isFull() {
         return cars.size() == maximumNumberOfSlots;
+    }
+
+    public int numberOfFreeSlots(){
+        return maximumNumberOfSlots - cars.size();
     }
 
     public void park(Car car) throws CarAlreadyParkedException, ParkingLotFullException {
