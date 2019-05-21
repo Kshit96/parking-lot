@@ -15,27 +15,27 @@ public class Attendant implements Notifiable {
     public void park(Car car) {
 
         ParkingLot parkingLotToParkIn = strategy.getParkingLot(availableParkingLots);
-        parkingLotToParkIn.park(car);
 
-        availableParkingLots = parkingLots.stream().filter(parkingLot -> !parkingLot.isFull()).collect(Collectors.toCollection(ArrayList::new));
+        parkingLotToParkIn.park(car);
     }
 
     public void unpark(Car car) {
         for(ParkingLot parkingLot: parkingLots){
             if(parkingLot.cars.contains(car)){
                 parkingLot.unpark(car);
+                return;
             }
         }
-        availableParkingLots = parkingLots.stream().filter(parkingLot -> !parkingLot.isFull()).collect(Collectors.toCollection(ArrayList::new));
+        throw new CarNotParkedException();
     }
 
     @Override
-    public void notifyParkingLotFull() {
-
+    public void notifyParkingLotFull(ParkingLot parkingLot) {
+        availableParkingLots.remove(parkingLot);
     }
 
     @Override
-    public void notifyParkingLotAvailable() {
-
+    public void notifyParkingLotAvailable(ParkingLot parkingLot) {
+        availableParkingLots.add(parkingLot);
     }
 }

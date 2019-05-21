@@ -1,7 +1,7 @@
 public interface Notifiable {
 
-    void notifyParkingLotFull();
+    void notifyParkingLotFull(ParkingLot parkingLot);
 
-    void notifyParkingLotAvailable();
+    void notifyParkingLotAvailable(ParkingLot parkingLot);
 
 }

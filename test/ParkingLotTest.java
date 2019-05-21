@@ -1,7 +1,5 @@
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -90,7 +88,7 @@ public class ParkingLotTest {
         parkingLot.park(car1);
         parkingLot.park(car2);
 
-        verify(owner, times(1)).notifyParkingLotFull();
+        verify(owner, times(1)).notifyParkingLotFull(parkingLot);
     }
 
     @Test
@@ -105,7 +103,7 @@ public class ParkingLotTest {
 
         parkingLot.park(car1);
 
-        verify(owner, times(0)).notifyParkingLotFull();
+        verify(owner, times(0)).notifyParkingLotFull(parkingLot);
     }
 
     @Test
@@ -123,8 +121,8 @@ public class ParkingLotTest {
         parkingLot.park(car2);
         parkingLot.unpark(car1);
 
-        verify(owner, times(1)).notifyParkingLotAvailable();
-        verify(trafficCop, times(1)).notifyParkingLotAvailable();
+        verify(owner, times(1)).notifyParkingLotAvailable(parkingLot);
+        verify(trafficCop, times(1)).notifyParkingLotAvailable(parkingLot);
     }
 
     @Test
@@ -141,8 +139,8 @@ public class ParkingLotTest {
         parkingLot.park(car1);
         parkingLot.park(car2);
 
-        verify(owner, times(1)).notifyParkingLotFull();
-        verify(trafficCop, times(1)).notifyParkingLotFull();
+        verify(owner, times(1)).notifyParkingLotFull(parkingLot);
+        verify(trafficCop, times(1)).notifyParkingLotFull(parkingLot);
 
     }
 

@@ -1,8 +1,8 @@
 public class TrafficCop implements Notifiable {
-    public void notifyParkingLotFull() {
+    public void notifyParkingLotFull(ParkingLot parkingLot) {
     }
 
-    public void notifyParkingLotAvailable() {
+    public void notifyParkingLotAvailable(ParkingLot parkingLot) {
 
     }
 }

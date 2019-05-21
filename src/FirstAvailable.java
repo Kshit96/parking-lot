@@ -6,6 +6,6 @@ public class FirstAvailable implements ParkingStrategy {
         if (!availableParkingLots.isEmpty()) {
             return availableParkingLots.get(0);
         }
-        return null;
+        throw new ParkingLotFullException();
     }
 }

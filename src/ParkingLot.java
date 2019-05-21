@@ -36,7 +36,7 @@ public class ParkingLot {
 
         if (isFull()) {
             for (Notifiable observer : observers) {
-                observer.notifyParkingLotFull();
+                observer.notifyParkingLotFull(this);
             }
         }
     }
@@ -56,7 +56,7 @@ public class ParkingLot {
 
         if (cars.size() == maximumNumberOfSlots-1) {
             for (Notifiable observer : observers) {
-                observer.notifyParkingLotAvailable();
+                observer.notifyParkingLotAvailable(this);
             }
         }
     }
