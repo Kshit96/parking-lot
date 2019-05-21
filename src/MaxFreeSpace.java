@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class MaxFreeSpace implements StrategyPattern {
+public class MaxFreeSpace implements ParkingStrategy {
     @Override
-    public void park(Car car, ArrayList<ParkingLot> availableParkingLots) {
+    public ParkingLot getParkingLot(ArrayList<ParkingLot> availableParkingLots) {
         Optional<ParkingLot> parkingLotToParkIn = availableParkingLots.stream().reduce((parkingLot, anotherParkingLot) -> parkingLot.numberOfFreeSlots() >= anotherParkingLot.numberOfFreeSlots() ? parkingLot : anotherParkingLot);
-        parkingLotToParkIn.get().park(car);
+        return parkingLotToParkIn.get();
     }
 }

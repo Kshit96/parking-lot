@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
-public class FirstAvailable implements StrategyPattern {
+public class FirstAvailable implements ParkingStrategy {
     @Override
-    public void park(Car car, ArrayList<ParkingLot> availableParkingLots) {
+    public ParkingLot getParkingLot(ArrayList<ParkingLot> availableParkingLots) {
         if (!availableParkingLots.isEmpty()) {
-            availableParkingLots.get(0).park(car);
+            return availableParkingLots.get(0);
         }
+        return null;
     }
 }

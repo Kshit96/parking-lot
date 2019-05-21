@@ -10,7 +10,7 @@ public class AttendantTest {
 
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(2));
-        StrategyPattern strategy = new MaxFreeSpace();
+        ParkingStrategy strategy = new MaxFreeSpace();
         Attendant attendant = new Attendant(parkingLots, strategy);
         Car car = new Car();
 
@@ -25,7 +25,7 @@ public class AttendantTest {
         Notifiable trafficCop = mock(Notifiable.class);
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(2));
-        StrategyPattern strategy = new MaxFreeSpace();
+        ParkingStrategy strategy = new MaxFreeSpace();
         Attendant attendant = new Attendant(parkingLots, strategy);
         parkingLots.get(0).addObserver(owner);
         parkingLots.get(0).addObserver(trafficCop);
@@ -47,7 +47,7 @@ public class AttendantTest {
         Notifiable trafficCop = mock(Notifiable.class);
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(2));
-        StrategyPattern strategy = new MaxFreeSpace();
+        ParkingStrategy strategy = new MaxFreeSpace();
         Attendant attendant = new Attendant(parkingLots, strategy);
         parkingLots.get(0).addObserver(owner);
         parkingLots.get(0).addObserver(trafficCop);
@@ -92,7 +92,7 @@ public class AttendantTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(2));
         parkingLots.add(new ParkingLot(3));
-        StrategyPattern strategy = new MaxFreeSpace();
+        ParkingStrategy strategy = new MaxFreeSpace();
         Attendant attendant = new Attendant(parkingLots, strategy);
         Car car1 = new Car();
         Car car2 = new Car();
@@ -109,7 +109,7 @@ public class AttendantTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(2));
         parkingLots.add(new ParkingLot(3));
-        StrategyPattern strategy = new MaxFreeSpace();
+        ParkingStrategy strategy = new MaxFreeSpace();
         Attendant attendant = new Attendant(parkingLots, strategy);
         Car car = new Car();
 
@@ -125,7 +125,7 @@ public class AttendantTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(5));
         parkingLots.add(new ParkingLot(3));
-        StrategyPattern strategy = new MaxFreeSpace();
+        ParkingStrategy strategy = new MaxFreeSpace();
         Attendant attendant = new Attendant(parkingLots, strategy);
         Car car1 = new Car();
         Car car2 = new Car();
@@ -149,7 +149,7 @@ public class AttendantTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(5));
         parkingLots.add(new ParkingLot(3));
-        StrategyPattern strategy = new MaxCapacity();
+        ParkingStrategy strategy = new MaxCapacity();
         Attendant attendant = new Attendant(parkingLots, strategy);
         Car car1 = new Car();
         Car car2 = new Car();
@@ -176,7 +176,7 @@ public class AttendantTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(2));
         parkingLots.add(new ParkingLot(3));
-        StrategyPattern strategy = new FirstAvailable();
+        ParkingStrategy strategy = new FirstAvailable();
         Attendant attendant = new Attendant(parkingLots, strategy);
         Car car1 = new Car();
         Car car2 = new Car();
@@ -204,7 +204,7 @@ public class AttendantTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(2));
         parkingLots.add(new ParkingLot(3));
-        StrategyPattern strategy = new FirstAvailable();
+        ParkingStrategy strategy = new FirstAvailable();
         Attendant attendant = new Attendant(parkingLots, strategy);
         Car car1 = new Car();
         Car car2 = new Car();
@@ -233,7 +233,7 @@ public class AttendantTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(2));
         parkingLots.add(new ParkingLot(3));
-        StrategyPattern strategy = new FirstAvailable();
+        ParkingStrategy strategy = new FirstAvailable();
         Attendant attendant = new Attendant(parkingLots, strategy);
         Car car1 = new Car();
         Car car2 = new Car();
